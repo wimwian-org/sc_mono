@@ -1,10 +1,17 @@
 # Changelog
 
+## 0.0.2
+
+### Patch Changes
+
+- fb5dafa: docs(core): add license metadata, expanded README, and release workflow instructions
+
 All notable changes to this project will be documented in this file.
 
 ## [0.1.0] - 2026-03-27
 
 ### Added
+
 - Initialized "Component-as-a-Repo" monorepo architecture.
 - Added comprehensive agent rules and commands for component development.
 - Configured Svelte 5 + Tailwind CSS v4 development environment.
