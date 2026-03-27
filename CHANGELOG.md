@@ -1,22 +1,15 @@
 # Changelog
 
-## 0.0.2
-
-### Patch Changes
-
-- fb5dafa: docs(core): add license metadata, expanded README, and release workflow instructions
-
 All notable changes to this project will be documented in this file.
 
 ## [0.1.0] - 2026-03-27
 
-### Added
-
-- Initialized "Component-as-a-Repo" monorepo architecture.
-- Added comprehensive agent rules and commands for component development.
-- Configured Svelte 5 + Tailwind CSS v4 development environment.
-- Established Git Flow branching strategy (master/dev sync).
-- Implemented Conventional Commits and Changesets for version management.
-- Integrated GitHub CLI (gh) for remote repository synchronization.
-- Created central alignment between `src/lib/index.ts` and `src/components/`.
-- Fixed `tsconfig.json` lint errors and updated build configuration.
+### Initial Release
+- **Monorepo Architecture**: Initialized "Component-as-a-Repo" strategy.
+- **Agent Governance**: Added comprehensive rules and commands for Svelte 5 development.
+- **Environment**: Configured Svelte 5 + Tailwind CSS v4 and resolved build issues.
+- **Release Management**: Implemented Conventional Commits and Changesets.
+- **Git Strategy**: Established official Git Flow (master/dev sync).
+- **Project Structure**: Created central alignment between `src/lib/index.ts` and `src/components/`.
+- **Infrastructure**: Integrated GitHub CLI (gh) and pushed the remote repository.
+- **Legal/Docs**: Added MIT License, expanded README, and established mandatory file headers with coverage metadata.
