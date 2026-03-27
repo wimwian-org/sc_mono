@@ -104,7 +104,7 @@
 - Prefer Tailwind utility classes for styling.
 - Do not use inline `style=""` attributes. **Exception:** dynamic numeric values that cannot be expressed as Tailwind utilities (e.g. auto-resize textarea height computed from `scrollHeight`) may use inline styles.
 - Use `@tailwindcss/forms` styles for form controls and `prose` for rich text where appropriate.
-- Tailwind is imported globally from `src/app.css`; do not re-import Tailwind in component files.
+- Tailwind is imported globally from `src/lib/layout.css`; do not re-import Tailwind in component files.
 
 ### Exports
 
