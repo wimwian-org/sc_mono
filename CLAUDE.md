@@ -21,6 +21,23 @@
 |------------------------------------|---------------------------------------------------------------|--------------------------------------|
 
 ---
+---
+
+## Repository Initialization & Setup
+
+### Git Flow
+- **Initialize**: `git flow init -d`
+- **Branches**: `master` (production), `dev` (development)
+- **Feature**: `git flow feature start <name>`
+- **Release**: `git flow release start <version>`
+
+### Adding a Component ("Plugging In")
+1.  **Initialize submodule**: `git submodule add <component-repo-url> src/components/{Name}/`
+2.  **Define Exports**: Add `src/components/{Name}/index.ts`.
+3.  **Aggregate**: Add the export to `src/lib/index.ts`.
+4.  **Register**: Create a changeset: `pnpm changeset`.
+
+---
 
 ## Scope
 
