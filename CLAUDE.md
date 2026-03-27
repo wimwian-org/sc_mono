@@ -15,7 +15,7 @@
 | publint                            | https://publint.dev                                           | Linting tool                         |
 | Vitest                             | https://vitest.dev                                            | Testing tool                         |
 | Playwright                         | https://playwright.dev/docs/intro                             | UI rendering e2e test                |
-| pnpm                               | https://pnpm.io                                               | Dependency management                |
+| bun                               | https://bun.io                                               | Dependency management                |
 | storybook                          | https://www.storybook.js.org                                  | Component documentation              |
 | MUI Design Specification           | @LLMs.md                                                      | Links to component design spec       |
 |------------------------------------|---------------------------------------------------------------|--------------------------------------|
@@ -112,8 +112,8 @@
 - Export only intended public API. Keep internal helpers unexported.
 - Do not export internal/upstream code from `src/lib/**` directly; route all public exports through `src/lib/index.ts`.
 - If `src/lib/index.ts` changes, run:
-  - `pnpm check`
-  - `pnpm build`
+  - `bun check`
+  - `bun build`
 
 ### Testing
 
@@ -143,7 +143,7 @@ coverage: {
 - Write components that work with sensible defaults when possible.
 - Accept a `class` prop (`string | undefined`) when style extension is useful.
 - Add or update a usage example in `src/routes/live/<Name>/+page.svelte` when introducing a new public component.
-- Run `pnpm check` before considering work complete.
+- Run `bun check` before considering work complete.
 - Use named exports (not default exports) for utilities and types in `.ts` files.
 
 ## Don'ts
@@ -164,11 +164,11 @@ coverage: {
 
 ## Build And Check
 
-- Install dependencies: `pnpm install`
-- Run dev server: `pnpm dev`
-- Run type/Svelte checks: `pnpm check`
-- Run package validation/build: `pnpm build`
-- Preview production demo build: `pnpm preview`
+- Install dependencies: `bun install`
+- Run dev server: `bun dev`
+- Run type/Svelte checks: `bun check`
+- Run package validation/build: `bun build`
+- Preview production demo build: `bun preview`
 
 ## Component-as-a-Repo Development Guide
 
@@ -178,13 +178,13 @@ coverage: {
 4.  **Composition**: Use a `parts/` subdirectory for internal micro-components that aren't intended for public use outside this component.
 5.  **Documentation**: Use a `stories/` subdirectory for Storybook files (`*.stories.ts` and `*.md`).
 6.  **Testing**: Use a `tests/` subdirectory for colocated Vitest tests (`*.svelte.test.ts`).
-7.  **Public Interface**: Export the component via a named export in `src/components/MyComponent/index.ts`. 
-8.  **Monorepo exports** - The individual components exported will be reexported through src/lib/index.ts. All library component code must be exported through this central entry point.
+7.  **Public Interface**: Each component MUST have an `index.ts` file in its root directory (e.g., `src/components/MyComponent/index.ts`) defining its named exports.
+8.  **Monorepo Aggregation**: All components MUST be re-exported directly in `src/lib/index.ts` (e.g., `export * from '../components/MyComponent/index.js'`). **Do not** use a central `src/components/index.ts` file. All library code must be accessible through the `src/lib/index.ts` entry point.
 9.  **Demo/Live Preview**: For every new component, add or update a usage page in `src/routes/live/<Name>/+page.svelte`.
 10. **Standard Compliance**:
     - Use Svelte 5 runes and Tailwind CSS for styling.
     - Ensure 100% test coverage for the component before completion.
-    - Run `pnpm check` and `pnpm lint` to maintain code health.
+    - Run `bun check` and `bun lint` to maintain code health.
     - Guarantee accessibility (ARIA patterns) as part of the core implementation.
 11. **Hermeticity**: Avoid importing internal parts of other components. If a component needs shared logic, that logic should reside in `src/lib/utils.ts` or a shared component.
 
@@ -218,16 +218,16 @@ src/
 
 | Command              | Description                      |
 |----------------------|----------------------------------|
-| `pnpm dev`           | Start dev server                 |
-| `pnpm build`         | Build library (`dist/`)          |
-| `pnpm test`          | Run all tests (single run)       |
-| `pnpm test:unit`     | Run tests in watch mode          |
-| `pnpm test:coverage` | Run tests with coverage report   |
-| `pnpm test:e2e`      | Run Playwright e2e tests         |
-| `pnpm lint`          | Prettier check                   |
-| `pnpm format`        | Prettier format                  |
-| `pnpm check`         | Svelte + TypeScript check        |
-| `pnpm storybook`     | Storybook dev server (port 6006) |
+| `bun dev`           | Start dev server                 |
+| `bun build`         | Build library (`dist/`)          |
+| `bun test`          | Run all tests (single run)       |
+| `bun test:unit`     | Run tests in watch mode          |
+| `bun test:coverage` | Run tests with coverage report   |
+| `bun test:e2e`      | Run Playwright e2e tests         |
+| `bun lint`          | Prettier check                   |
+| `bun format`        | Prettier format                  |
+| `bun check`         | Svelte + TypeScript check        |
+| `bun storybook`     | Storybook dev server (port 6006) |
 
 ## Rules
 

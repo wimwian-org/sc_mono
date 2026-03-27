@@ -15,7 +15,7 @@ Repo model: This mono-repo treats each component as a self-contained repository 
 **TypeScript**
 - `{ComponentName}Props` interface defined in `{ComponentName}Types.ts`
 - Interface extends the correct `HTMLAttributes` type
-- Component re-exported through the component's `index.ts` and then aggregated in `src/lib/index.ts`
+- Component re-exported directly in `src/lib/index.ts` (bypassing any central `src/components/index.ts`)
 
 **Component API**
 - `class` prop accepted and applied (via `className` alias)

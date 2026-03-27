@@ -12,7 +12,7 @@ Steps:
 3. Read the relevant source files before making any changes
 4. Apply the minimal fix — do not refactor surrounding code
 5. Update or add tests in `src/components/{Component}/tests/*.svelte.test.ts` to cover the fixed case
-6. Run `pnpm test` to verify nothing is broken
-7. Run `pnpm check` to verify TypeScript and Svelte validity
+6. Run `bun test` to verify nothing is broken
+7. Run `bun check` to verify TypeScript and Svelte validity
 
 $ARGUMENTS

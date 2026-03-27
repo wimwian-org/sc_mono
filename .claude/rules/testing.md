@@ -3,7 +3,7 @@
 ## Framework
 
 - **Unit/Component tests:** Vitest + `vitest-browser-svelte` (runs in real Chromium via Playwright)
-- **E2E tests:** Playwright (`pnpm test:e2e`)
+- **E2E tests:** Playwright (`bun test:e2e`)
 - **Coverage:** V8 provider, 80% threshold on lines, branches, functions, and statements
 
 ## File Conventions
@@ -38,7 +38,7 @@ describe('Component', () => {
 
 ## Coverage
 
-Run `pnpm test:coverage` to verify thresholds. CI enforces ≥ 90% on all four metrics.
+Run `bun test:coverage` to verify thresholds. CI enforces ≥ 90% on all four metrics.
 New components must include tests before being merged.
 
 ## Suppressing Coverage Noise

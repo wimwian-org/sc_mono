@@ -25,8 +25,9 @@ Since each component is its own repository, use the following pattern to integra
 3.  **Linkage**: Use `git submodule` or a dedicated synchronization script to pull the component's `master` and `dev` branches into the monorepo folder.
     *   *Standard approach*: `git submodule add <component-repo-url> src/components/{ComponentName}/`
 4.  **Registration**:
-    - Add re-export in `src/components/{ComponentName}/index.ts`.
-    - Add aggregation export in `src/lib/index.ts`.
+    - Build named exports in `src/components/{ComponentName}/index.ts`.
+    - **Crucial**: Aggregagate the component's public API directly in `src/lib/index.ts` (e.g., `export * from '../components/{ComponentName}/index.js'`).
+    - **Do not** use a central `src/components/index.ts`.
     - Create a changeset: `pnpm changeset`.
 
 ## Monorepo Strategy
@@ -73,4 +74,4 @@ To maintain a professional mono-repo state:
 
 ## Verification Workflow
 
-Even when working on a single component, the agent must ensure that changes do NOT break the monorepo's integrity. Always run `pnpm check` and `pnpm build` across the entire project before finalizing a component's work.
+Even when working on a single component, the agent must ensure that changes do NOT break the monorepo's integrity. Always run `bun check` and `bun build` across the entire project before finalizing a component's work.

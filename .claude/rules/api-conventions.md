@@ -20,19 +20,17 @@ export * from './{ComponentName}Types';
 
 ## Props Interface
 
-Define in `{ComponentName}Types.ts`, export from its `index.ts`, and finally collect in `src/lib/index.ts`:
+Define in `{ComponentName}Types.ts` and aggregate directly in `src/lib/index.ts`:
 
 ```typescript
+// src/lib/index.ts
+export * from '../components/{ComponentName}/index.js';
+```
+
+```typescript
+// src/components/{ComponentName}/ButtonTypes.ts
 import type { Snippet } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
-
-export type ComponentVariant = 'filled' | 'outlined' | 'text';
-
-export interface ComponentProps extends HTMLButtonAttributes {
-  variant?: ComponentVariant;
-  children?: Snippet;
-  class?: string;
-}
 ```
 
 - Always extend the relevant `HTML*Attributes` type for native element passthrough
@@ -62,7 +60,7 @@ export interface ComponentProps extends HTMLButtonAttributes {
 
 ## Exports
 
-All public components and types must be re-exported from `src/lib/index.ts`.
+All public components and types must be re-exported directly from `src/lib/index.ts`. **Do not** use a central `src/components/index.ts`.
 
 ## Accessibility
 

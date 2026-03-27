@@ -16,7 +16,7 @@ Every source file (`.svelte`, `.ts`, `.js`) MUST begin with a standardized heade
 ```
 
 - **Copyright**: Ensure the year and organization match the project's current state.
-- **Coverage Metrics**: Update these based on the latest `pnpm test:coverage` report for the specific file.
+- **Coverage Metrics**: Update these based on the latest `bun test:coverage` report for the specific file.
 - **Ignored Lines**: Explicitly list the count of lines using `/* v8 ignore next */` or similar coverage exclusion tags.
 
 ## Svelte 5 Runes
@@ -56,4 +56,4 @@ Enforced by Prettier (`.prettierrc`):
 - **Tabs** for indentation (not spaces)
 - **Single quotes**
 - **100 character** print width
-- Svelte and Tailwind plugins active — run `pnpm format` before committing
+- Svelte and Tailwind plugins active — run `bun format` before committing

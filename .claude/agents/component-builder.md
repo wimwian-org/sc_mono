@@ -17,7 +17,7 @@ Repo model: This repository is a mono-repo where each component is treated as a 
 - `README.md` (component-level usage and props)
 - `package.json` (optional, for component-specific metadata)
 - demo page under `src/routes/live/{Name}/+page.svelte`
-- re-export in `src/lib/index.ts` for package-level aggregation
+- re-export directly in `src/lib/index.ts` (e.g., `export * from '../components/{Name}/index.js'`)
 
 Keep each component self-contained so automation or CI can treat it as an independent deliverable.
 
@@ -75,6 +75,6 @@ describe('{Name}', () => {
 
 Always:
 - Re-export the component and its types from `src/lib/index.ts`
-- Run `pnpm check` and `pnpm test` after creating files
+- Run `bun check` and `bun test` after creating files
 - Always include Storybook story
 - Create `src/routes/live/{Name}/+page.svelte` to demo the props and behaviors

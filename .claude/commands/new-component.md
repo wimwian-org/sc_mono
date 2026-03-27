@@ -17,6 +17,6 @@ Given a component name and optional description, create:
 
 Follow `.claude/rules/code-style.md`, `.claude/rules/api-conventions.md`, `.claude/rules/testing.md`, and `.claude/rules/monorepo-architecture.md`.
 
-After scaffolding, run `pnpm check` and `pnpm test` to verify correctness.
+After scaffolding, run `bun check` and `bun test` to verify correctness.
 
 $ARGUMENTS
