@@ -1,0 +1,3 @@
+[submodule "src/components/Button"]
+	path = src/components/Button
+	url = git@github.com:wimwian-org/sc_button.git
