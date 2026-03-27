@@ -13,7 +13,7 @@ import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonTypes.js';
 
 export type ButtonLinkLoadingPosition = 'start' | 'center' | 'end';
 
-export interface ButtonLinkProps extends HTMLAnchorAttributes {
+export interface ButtonLinkProps extends Omit<HTMLAnchorAttributes, 'children'> {
 	href: string;
 	target?: '_self' | '_blank' | '_parent' | '_top';
 	rel?: string;
@@ -27,8 +27,8 @@ export interface ButtonLinkProps extends HTMLAnchorAttributes {
 	disableElevation?: boolean;
 	class?: string;
 	onClick?: (event: MouseEvent) => void;
-	children?: Snippet;
-	startIcon?: Snippet;
-	endIcon?: Snippet;
-	loadingIndicator?: Snippet;
+	children?: Snippet | string;
+	startIcon?: Snippet | string;
+	endIcon?: Snippet | string;
+	loadingIndicator?: Snippet | string;
 }

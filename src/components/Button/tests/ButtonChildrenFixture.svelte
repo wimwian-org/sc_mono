@@ -1,4 +1,4 @@
-<-pnpm test:unit --coverage --run
+<!--
 /**
  * @license
  * MIT License
@@ -15,4 +15,3 @@
 <Button>
 	<span data-testid="button-child">Save changes</span>
 </Button>
-

@@ -16,7 +16,7 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonLoadingPosition = 'start' | 'center' | 'end';
 
-export interface ButtonProps extends HTMLButtonAttributes {
+export interface ButtonProps extends Omit<HTMLButtonAttributes, 'children'> {
 	variant?: ButtonVariant;
 	color?: ButtonColor;
 	size?: ButtonSize;
@@ -27,8 +27,8 @@ export interface ButtonProps extends HTMLButtonAttributes {
 	disableElevation?: boolean;
 	class?: string;
 	onClick?: (event: MouseEvent) => void;
-	children?: Snippet;
-	startIcon?: Snippet;
-	endIcon?: Snippet;
-	loadingIndicator?: Snippet;
+	children?: Snippet | string;
+	startIcon?: Snippet | string;
+	endIcon?: Snippet | string;
+	loadingIndicator?: Snippet | string;
 }

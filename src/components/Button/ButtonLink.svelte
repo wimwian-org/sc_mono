@@ -133,7 +133,11 @@
 	{#if showLoadingStart}
 		<span role="status" aria-label="Loading" class="inline-flex" data-testid="button-link-loading">
 			{#if loadingIndicator}
-				{@render loadingIndicator()}
+				{#if typeof loadingIndicator === 'string'}
+					{loadingIndicator}
+				{:else}
+					{@render loadingIndicator()}
+				{/if}
 			{:else}
 				<svg class="w-4 h-4 animate-spin" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
 					<path
@@ -146,12 +150,22 @@
 
 	{#if showStartIcon}
 		<span aria-hidden="true" class="inline-flex" data-testid="button-link-start-icon">
-			{@render startIcon?.()}
+			{#if typeof startIcon === 'string'}
+				{startIcon}
+			{:else}
+				{@render startIcon?.()}
+			{/if}
 		</span>
 	{/if}
 
 	{#if children}
-		<span class="inline-flex items-center">{@render children()}</span>
+		<span class="inline-flex items-center">
+			{#if typeof children === 'string'}
+				{children}
+			{:else}
+				{@render children()}
+			{/if}
+		</span>
 	{:else}
 		<span class="inline-flex items-center">Button link</span>
 	{/if}
@@ -159,7 +173,11 @@
 	{#if showLoadingCenter}
 		<span role="status" aria-label="Loading" class="inline-flex" data-testid="button-link-loading">
 			{#if loadingIndicator}
-				{@render loadingIndicator()}
+				{#if typeof loadingIndicator === 'string'}
+					{loadingIndicator}
+				{:else}
+					{@render loadingIndicator()}
+				{/if}
 			{:else}
 				<svg class="w-4 h-4 animate-spin" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
 					<path
@@ -172,14 +190,22 @@
 
 	{#if showEndIcon}
 		<span aria-hidden="true" class="inline-flex" data-testid="button-link-end-icon">
-			{@render endIcon?.()}
+			{#if typeof endIcon === 'string'}
+				{endIcon}
+			{:else}
+				{@render endIcon?.()}
+			{/if}
 		</span>
 	{/if}
 
 	{#if showLoadingEnd}
 		<span role="status" aria-label="Loading" class="inline-flex" data-testid="button-link-loading">
 			{#if loadingIndicator}
-				{@render loadingIndicator()}
+				{#if typeof loadingIndicator === 'string'}
+					{loadingIndicator}
+				{:else}
+					{@render loadingIndicator()}
+				{/if}
 			{:else}
 				<svg class="w-4 h-4 animate-spin" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
 					<path

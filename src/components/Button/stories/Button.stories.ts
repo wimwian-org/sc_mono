@@ -36,33 +36,33 @@ type Story = StoryObj<typeof meta>;
 export const Contained: Story = {
 	args: {
 		variant: 'contained',
-		children: () => 'Contained Button',
+		children: 'Contained Button',
 	},
 };
 
 export const Outlined: Story = {
 	args: {
 		variant: 'outlined',
-		children: () => 'Outlined Button',
+		children: 'Outlined Button',
 	},
 };
 
 export const Text: Story = {
 	args: {
 		variant: 'text',
-		children: () => 'Text Button',
+		children: 'Text Button',
 	},
 };
 
 export const Loading: Story = {
 	args: {
 		loading: true,
-		children: () => 'Loading...',
+		children: 'Loading...',
 	},
 };
 
 export const WithIcons: Story = {
 	args: {
-		children: () => 'Icon Button',
+		children: 'Icon Button',
 	},
 };
