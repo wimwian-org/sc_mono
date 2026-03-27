@@ -1,16 +1,84 @@
-# Svelte Component Library
+# Svelte Component Library (SC Mono)
 
-This is a **Vite + Svelte 5 component monorepo**.
+Welcome to the **SC Mono**, a professional-grade UI library built with **Svelte 5** and **Tailwind CSS v4**.
 
-## Architecture: Component-as-a-Repo
+This repository is designed as a **high-fidelity component monorepo** where every component is treated as an independent deliverable.
 
-The project follows a "Component-as-a-Repo" architecture. Every component in `src/components/` is treated as an independent, standalone repository within the mono-repo.
+---
 
-- **Self-contained folders**: Implementation, types, sub-components, stories, documentation, and tests all reside together.
-- **Independent but integrated**: While each component is a separate unit, they are part of a unified library and can depend on each other through defined public export paths.
-- **Centralized Export**: All public components are exported through `src/components/index.ts` and eventually `src/lib/index.ts`.
+## 🏛️ Architecture: Component-as-a-Repo
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+The core philosophy of this project is high cohesion and self-containment. Each directory under `src/components/` acts as an independent repository within the monorepo:
+
+- **Isolated Folders**: Every component contains its own:
+  - `index.ts` (Public API)
+  - `MyComponent.svelte` (Implementation)
+  - `MyComponentTypes.ts` (Type Definitions)
+  - `tests/` (Vitest Browser Tests)
+  - `stories/` (Storybook Documentation)
+  - `README.md` (Component-specific usage)
+- **Central aggregation**: Every component re-exports through their local `index.ts`, eventually collected in `src/lib/index.ts`.
+
+---
+
+## 🚀 Key Technologies
+
+- **[Svelte 5](https://svelte.dev/docs/svelte/what-are-runes)**: Exclusively using **Runes** (`$props`, `$state`, `$derived`) for modern reactivity.
+- **[Tailwind CSS v4](https://tailwindcss.com/docs/v4-beta)**: Using the CSS-first configuration engine.
+- **[Vite 8](https://vite.dev/)**: For lightning-fast builds and dev serving.
+- **[Vitest + Playwright](https://vitest.dev)**: For browser-based unit/component testing.
+- **[Changesets](https://github.com/changesets/changesets)**: For automated versioning and changelog generation.
+
+---
+
+## 📖 Essential Documentation
+
+To understand our detailed conventions and workflows, please refer to the following documents:
+
+- **[CLAUDE.md](./CLAUDE.md)**: The primary manual for local environment setup, build commands, and architectural scope.
+- **[Rules & Conventions](./.claude/rules/)**:
+  - **[Monorepo Strategy](./.claude/rules/monorepo-architecture.md)**: Git branching, synchronization, and component integration logic.
+  - **[API Conventions](./.claude/rules/api-conventions.md)**: How to structure component interfaces and exports.
+  - **[Code Style](./.claude/rules/code-style.md)**: Standard runes and Tailwind patterns.
+  - **[Testing Standards](./.claude/rules/testing.md)**: Coverage targets and testing methodologies.
+- **[Changelog](./CHANGELOG.md)**: History of notable project additions and fixes.
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Prerequisites
+Ensure you have [pnpm](https://pnpm.io) installed.
+
+### 2. Installation
+```bash
+pnpm install
+```
+
+### 3. Development
+```bash
+pnpm dev
+```
+
+### 4. Testing
+- Run all tests: `pnpm test`
+- Coverage report: `pnpm test:coverage`
+- Storybook: `pnpm storybook`
+
+---
+
+## 🌳 Branching & Workflow
+
+This project uses a modified Git Flow strategy:
+- **`master`** is production-ready.
+- **`dev`** is the integration branch.
+- **Feature development** occurs in component-specific repositories/branches.
+
+**Important**: We use **Conventional Commits** (`feat(Button): description`) to automate versioning.
+
+---
+
+Read more about creating a library [in the official documentation](https://svelte.dev/docs/kit/packaging).
 
 ## Creating a project
 

@@ -38,7 +38,7 @@ describe('Component', () => {
 
 ## Coverage
 
-Run `pnpm test:coverage` to verify thresholds. CI enforces ≥ 80% on all four metrics.
+Run `pnpm test:coverage` to verify thresholds. CI enforces ≥ 90% on all four metrics.
 New components must include tests before being merged.
 
 ## Suppressing Coverage Noise

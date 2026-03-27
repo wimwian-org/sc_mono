@@ -1,5 +1,24 @@
 # Code Style
 
+## Mandatory File Header
+
+Every source file (`.svelte`, `.ts`, `.js`) MUST begin with a standardized header containing the license, copyright, and coverage metadata.
+
+```typescript
+/**
+ * @license
+ * MIT License
+ * Copyright (c) 2026 wimwian-org. All rights reserved.
+ *
+ * Coverage: statements 95% | branches 95% | functions 95% | lines 95%
+ * Ignored lines: 0
+ */
+```
+
+- **Copyright**: Ensure the year and organization match the project's current state.
+- **Coverage Metrics**: Update these based on the latest `pnpm test:coverage` report for the specific file.
+- **Ignored Lines**: Explicitly list the count of lines using `/* v8 ignore next */` or similar coverage exclusion tags.
+
 ## Svelte 5 Runes
 
 Always use Svelte 5 runes — never use legacy `export let`, `$:`, or `createEventDispatcher`.
