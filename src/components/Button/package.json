@@ -1,0 +1,16 @@
+{
+  "name": "@sc-mono/button",
+  "version": "0.1.0",
+  "type": "module",
+  "svelte": "./Button.svelte",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "svelte": "./Button.svelte"
+    }
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+}
