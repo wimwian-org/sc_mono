@@ -1,5 +1,34 @@
 # Monorepo and Component Architecture
 
+## Repository Setup
+
+### Monorepo Initialization
+1.  **Git Initialization**:
+    ```bash
+    git init
+    git checkout -b master
+    git commit --allow-empty -m "chore: initial commit"
+    git checkout -b dev
+    ```
+2.  **Git Flow Initialization**:
+    ```bash
+    git flow init -d
+    # Use 'master' for production releases
+    # Use 'dev' for next release (integration)
+    ```
+
+### Component Integration ("Plugging In")
+Since each component is its own repository, use the following pattern to integrate it into the monorepo:
+
+1.  **Create/Sync Folder**: Create the component folder in `src/components/{ComponentName}/`.
+2.  **Initialize Component Repo**: If the component repo doesn't exist, initialize it separately.
+3.  **Linkage**: Use `git submodule` or a dedicated synchronization script to pull the component's `master` and `dev` branches into the monorepo folder.
+    *   *Standard approach*: `git submodule add <component-repo-url> src/components/{ComponentName}/`
+4.  **Registration**:
+    - Add re-export in `src/components/{ComponentName}/index.ts`.
+    - Add aggregation export in `src/lib/index.ts`.
+    - Create a changeset: `pnpm changeset`.
+
 ## Monorepo Strategy
 
 The project is structured as a **Vite + Svelte 5 component monorepo**. While it may appear as a single codebase, we treat each component folder as an independent repository (Component-as-a-Repo).
