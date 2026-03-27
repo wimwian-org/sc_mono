@@ -9,7 +9,7 @@
 
 import type { Snippet } from 'svelte';
 import type { HTMLAnchorAttributes } from 'svelte/elements';
-import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonTypes.js';
+import type { ButtonColor, ButtonSize, ButtonVariant, RippleIntensity } from './ButtonTypes.js';
 
 export type ButtonLinkLoadingPosition = 'start' | 'center' | 'end';
 
@@ -25,6 +25,7 @@ export interface ButtonLinkProps extends Omit<HTMLAnchorAttributes, 'children'> 
 	loading?: boolean;
 	loadingPosition?: ButtonLinkLoadingPosition;
 	disableElevation?: boolean;
+	rippleIntensity?: RippleIntensity;
 	class?: string;
 	onClick?: (event: MouseEvent) => void;
 	children?: Snippet | string;

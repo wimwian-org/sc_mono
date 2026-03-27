@@ -80,6 +80,12 @@
 
 ## Code Rules
 
+### Engineering Principles
+
+- **DRY (Don't Repeat Yourself)**: Ensure the codebase is dry and well-documented for maintainability.
+  - **Rule**: Any code repetition greater than 2 lines should be encapsulated in a utility function.
+  - Document all utility functions with JSDoc comments explaining purpose, parameters, and return values.
+
 ### Svelte (library components)
 
 - Use **Svelte 5 runes** exclusively. Do not use Svelte 4 patterns (`$:`, `export let`, stores, slots, `svelte:component`, `$$props`, `$$restProps`).
@@ -180,7 +186,14 @@ coverage: {
 6.  **Testing**: Use a `tests/` subdirectory for colocated Vitest tests (`*.svelte.test.ts`).
 7.  **Public Interface**: Each component MUST have an `index.ts` file in its root directory (e.g., `src/components/MyComponent/index.ts`) defining its named exports.
 8.  **Monorepo Aggregation**: All components MUST be re-exported directly in `src/lib/index.ts` (e.g., `export * from '../components/MyComponent/index.js'`). **Do not** use a central `src/components/index.ts` file. All library code must be accessible through the `src/lib/index.ts` entry point.
-9.  **Demo/Live Preview**: For every new component, add or update a usage page in `src/routes/live/<Name>/+page.svelte`.
+9.  **Demo/Live Preview**: For every new component, add or update a usage page in `src/routes/live/<ComponentName>/+page.svelte`.
+    - **Requirement**: Every gallery page MUST include an **Interactive Playground**.
+    - **Playground Features**:
+      - **Live Preview**: Large, centered area showing the component (default white background).
+      - **Dynamic Controls**: Side or bottom panel with controls for every public prop (variants, colors, sizes, states).
+      - **Live Code Generator**: A code block that updates in real-time as props are changed.
+      - **Copy Snipet**: A button to instantly copy the generated code to the clipboard.
+    - **Aesthetics**: Use pure white backgrounds for all controls and containers to ensure maximum contrast.
 10. **Standard Compliance**:
     - Use Svelte 5 runes and Tailwind CSS for styling.
     - Ensure 100% test coverage for the component before completion.

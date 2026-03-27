@@ -10,6 +10,7 @@
 -->
 <script lang="ts">
 	import type { ButtonColor, ButtonProps, ButtonSize, ButtonVariant } from './ButtonTypes.js';
+	import { getRippleOpacityClasses } from './ButtonUtils.js';
 
 	// Ripple state
 	let ripples = $state<Array<{ key: number; x: number; y: number; size: number }>>([]);
@@ -25,7 +26,7 @@
 		ripples = [...ripples, { key, x, y, size }];
 		// Remove ripple after animation
 		setTimeout(() => {
-			ripples = ripples.filter((r) => r.key !== key);
+			ripples = ripples.filter((r: { key: number }) => r.key !== key);
 		}, 500);
 	}
 
@@ -39,6 +40,7 @@
 		loading = false,
 		loadingPosition = 'start',
 		disableElevation = false,
+		rippleIntensity = 'medium',
 		class: className,
 		onClick,
 		children,
@@ -117,6 +119,9 @@
 	const showLoadingEnd = $derived(loading && loadingPosition === 'end');
 	const showStartIcon = $derived(!!startIcon && !(loading && loadingPosition === 'start'));
 	const showEndIcon = $derived(!!endIcon && !(loading && loadingPosition === 'end'));
+
+	const rippleOpacityClasses = $derived(getRippleOpacityClasses(rippleIntensity, variant));
+
 	/* v8 ignore next */
 	const _customCls = $derived(className ?? '');
 
@@ -131,15 +136,17 @@
 	aria-busy={loading || undefined}
 	class={buttonClass}
 	{...rest}
-	onclick={(e) => {
-		handleRipple(e);
+	onclick={(e: MouseEvent) => {
+		if (rippleIntensity !== 'none') {
+			handleRipple(e);
+		}
 		onClick?.(e);
 	}}
 >
 	{#each ripples as ripple (ripple.key)}
 		{/* v8 ignore start */ ''}
 		<span
-			class="pointer-events-none absolute rounded-full bg-white/40 dark:bg-white/20 animate-ripple"
+			class="pointer-events-none absolute rounded-full animate-ripple {rippleOpacityClasses}"
 			style:left="{ripple.x}px"
 			style:top="{ripple.y}px"
 			style:width="{ripple.size}px"

@@ -17,107 +17,107 @@ import ButtonLoadingPositionsFixture from './ButtonLoadingPositionsFixture.svelt
 
 describe('Button', () => {
 	it('renders a button element', async () => {
-		const screen = render(Button, {});
+		const screen = await render(Button, {});
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('defaults type to button', async () => {
-		const screen = render(Button, {});
+		const screen = await render(Button, {});
 		await expect.element(screen.getByRole('button')).toHaveAttribute('type', 'button');
 	});
 
 	it('supports type=submit', async () => {
-		const screen = render(Button, { type: 'submit' });
+		const screen = await render(Button, { type: 'submit' });
 		await expect.element(screen.getByRole('button')).toHaveAttribute('type', 'submit');
 	});
 
 	it('renders children snippet content', async () => {
-		const screen = render(ButtonChildrenFixture);
+		const screen = await render(ButtonChildrenFixture);
 		await expect.element(screen.getByTestId('button-child')).toBeInTheDocument();
 	});
 
 	it('renders default text when children not provided', async () => {
-		const screen = render(Button, {});
+		const screen = await render(Button, {});
 		await expect.element(screen.getByText('Button')).toBeInTheDocument();
 	});
 
 	it('supports contained variant', async () => {
-		const screen = render(Button, { variant: 'contained' });
+		const screen = await render(Button, { variant: 'contained' });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('supports outlined variant', async () => {
-		const screen = render(Button, { variant: 'outlined' });
+		const screen = await render(Button, { variant: 'outlined' });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('supports text variant', async () => {
-		const screen = render(Button, { variant: 'text' });
+		const screen = await render(Button, { variant: 'text' });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it.each(['primary', 'secondary', 'success', 'error', 'warning', 'info'] as const)(
 		'supports color=%s',
 		async (color) => {
-			const screen = render(Button, { color });
+			const screen = await render(Button, { color });
 			await expect.element(screen.getByRole('button')).toBeInTheDocument();
 		},
 	);
 
 	it.each(['small', 'medium', 'large'] as const)('supports size=%s', async (size) => {
-		const screen = render(Button, { size });
+		const screen = await render(Button, { size });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('is disabled when disabled=true', async () => {
-		const screen = render(Button, { disabled: true });
+		const screen = await render(Button, { disabled: true });
 		await expect.element(screen.getByRole('button')).toBeDisabled();
 	});
 
 	it('is disabled while loading', async () => {
-		const screen = render(Button, { loading: true });
+		const screen = await render(Button, { loading: true });
 		await expect.element(screen.getByRole('button')).toBeDisabled();
 		await expect.element(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
 	});
 
 	it('renders default loading spinner', async () => {
-		const screen = render(Button, { loading: true });
+		const screen = await render(Button, { loading: true });
 		await expect.element(screen.getByTestId('button-loading')).toBeInTheDocument();
 	});
 
 	it('renders custom loadingIndicator snippet', async () => {
-		const screen = render(ButtonLoadingFixture);
+		const screen = await render(ButtonLoadingFixture);
 		await expect.element(screen.getByTestId('custom-loading')).toBeInTheDocument();
 	});
 
 	it('renders start/end icon snippets', async () => {
-		const screen = render(ButtonIconsFixture);
+		const screen = await render(ButtonIconsFixture);
 		await expect.element(screen.getByTestId('start-icon')).toBeInTheDocument();
 		await expect.element(screen.getByTestId('end-icon')).toBeInTheDocument();
 	});
 
 	it('hides icon snippets while loading', async () => {
-		const screen = render(Button, { loading: true });
+		const screen = await render(Button, { loading: true });
 		expect(screen.getByTestId('button-start-icon').elements().length).toBe(0);
 		expect(screen.getByTestId('button-end-icon').elements().length).toBe(0);
 	});
 
 	it('loadingPosition=start hides start icon and keeps end icon', async () => {
-		const screen = render(ButtonLoadingPositionsFixture, { loadingPosition: 'start' });
+		const screen = await render(ButtonLoadingPositionsFixture, { loadingPosition: 'start' });
 		expect(screen.getByTestId('start-icon').elements().length).toBe(0);
 		await expect.element(screen.getByTestId('end-icon')).toBeInTheDocument();
 		await expect.element(screen.getByTestId('button-loading')).toBeInTheDocument();
 	});
 
 	it('loadingPosition=center keeps both icons', async () => {
-		const screen = render(ButtonLoadingPositionsFixture, { loadingPosition: 'center' });
+		const screen = await render(ButtonLoadingPositionsFixture, { loadingPosition: 'center' });
 		await expect.element(screen.getByTestId('start-icon')).toBeInTheDocument();
 		await expect.element(screen.getByTestId('end-icon')).toBeInTheDocument();
 		await expect.element(screen.getByTestId('button-loading')).toBeInTheDocument();
 	});
 
 	it('loadingPosition=end keeps start icon and hides end icon', async () => {
-		const screen = render(ButtonLoadingPositionsFixture, { loadingPosition: 'end' });
+		const screen = await render(ButtonLoadingPositionsFixture, { loadingPosition: 'end' });
 		await expect.element(screen.getByTestId('start-icon')).toBeInTheDocument();
 		expect(screen.getByTestId('end-icon').elements().length).toBe(0);
 		await expect.element(screen.getByTestId('button-loading')).toBeInTheDocument();
@@ -125,35 +125,35 @@ describe('Button', () => {
 
 	it('calls onClick when clicked', async () => {
 		const onClick = vi.fn();
-		const screen = render(Button, { onClick });
+		const screen = await render(Button, { onClick });
 		await screen.getByRole('button').click();
 		expect(onClick).toHaveBeenCalledOnce();
 	});
 
 	it('does not call onClick when disabled', async () => {
 		const onClick = vi.fn();
-		const screen = render(Button, { onClick, disabled: true });
+		const screen = await render(Button, { onClick, disabled: true });
 		await screen.getByRole('button').click({ force: true });
 		expect(onClick).not.toHaveBeenCalled();
 	});
 
 	it('accepts custom class', async () => {
-		const screen = render(Button, { class: 'custom-button' });
+		const screen = await render(Button, { class: 'custom-button' });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('supports fullWidth', async () => {
-		const screen = render(Button, { fullWidth: true });
+		const screen = await render(Button, { fullWidth: true });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('supports disableElevation', async () => {
-		const screen = render(Button, { disableElevation: true, variant: 'contained' });
+		const screen = await render(Button, { disableElevation: true, variant: 'contained' });
 		await expect.element(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('shows a ripple effect on click', async () => {
-		const screen = render(Button, {});
+		const screen = await render(Button, {});
 		const button = screen.getByRole('button');
 		// Access the DOM node for querySelector
 		const buttonEl = button.element();

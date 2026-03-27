@@ -11,6 +11,25 @@
 <script lang="ts">
 	import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonTypes.js';
 	import type { ButtonLinkProps } from './ButtonLinkTypes.js';
+	import { getRippleOpacityClasses } from './ButtonUtils.js';
+
+	// Ripple state
+	let ripples = $state<Array<{ key: number; x: number; y: number; size: number }>>([]);
+	let rippleKey = $state(0);
+
+	function handleRipple(event: MouseEvent) {
+		const button = event.currentTarget as HTMLElement;
+		const rect = button.getBoundingClientRect();
+		const size = Math.max(rect.width, rect.height);
+		const x = event.clientX - rect.left - size / 2;
+		const y = event.clientY - rect.top - size / 2;
+		const key = rippleKey++;
+		ripples = [...ripples, { key, x, y, size }];
+		// Remove ripple after animation
+		setTimeout(() => {
+			ripples = ripples.filter((r: { key: number }) => r.key !== key);
+		}, 500);
+	}
 
 	let {
 		href,
@@ -24,6 +43,7 @@
 		loading = false,
 		loadingPosition = 'start',
 		disableElevation = false,
+		rippleIntensity = 'medium',
 		class: className,
 		onClick,
 		children,
@@ -94,7 +114,7 @@
 	const widthClasses = $derived(fullWidth ? 'w-full' : 'w-auto');
 
 	const baseClasses =
-		'inline-flex items-center justify-center font-medium transition-colors duration-150 ' +
+		'relative overflow-hidden inline-flex items-center justify-center font-medium transition-colors duration-150 ' +
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
 
 	const showLoadingStart = $derived(loading && loadingPosition === 'start');
@@ -108,8 +128,13 @@
 			event.preventDefault();
 			return;
 		}
+		if (rippleIntensity !== 'none') {
+			handleRipple(event);
+		}
 		onClick?.(event);
 	}
+
+	const rippleOpacityClasses = $derived(getRippleOpacityClasses(rippleIntensity, variant));
 
 	/* v8 ignore next */
 	const _customCls = $derived(className ?? '');
@@ -130,6 +155,19 @@
 	{...rest}
 	onclick={handleClick}
 >
+	{#each ripples as ripple (ripple.key)}
+		{/* v8 ignore start */ ''}
+		<span
+			class="pointer-events-none absolute rounded-full animate-ripple {rippleOpacityClasses}"
+			style:left="{ripple.x}px"
+			style:top="{ripple.y}px"
+			style:width="{ripple.size}px"
+			style:height="{ripple.size}px"
+			aria-hidden="true"
+		></span>
+		{/* v8 ignore stop */ ''}
+	{/each}
+
 	{#if showLoadingStart}
 		<span role="status" aria-label="Loading" class="inline-flex" data-testid="button-link-loading">
 			{#if loadingIndicator}
